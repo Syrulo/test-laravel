@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 
-Route::view('/', 'index');
+Route::view('/', 'index')->name('home');
 
 Route::get('/books', [BookController::class, 'index'])->name('books.index');
 

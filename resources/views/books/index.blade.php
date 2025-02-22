@@ -2,23 +2,35 @@
 
 @section('content')
 
-    @foreach ($books as $book)
-        <p>
-            {{ $book->title }} de {{ $book->user->name }}
-        </p>
-        <br>
-        <p>
-            <a href="{{ route('books.edit', $book) }}">Editer</a>
-            <form action="{{ route('books.destroy', $book) }}" method="POST">
+<div class="fixed top-0 left-0 w-full p-4 flex z-50 bg-gray-500">
+    <a href="{{ route('home') }}" class="bg-stone-400 text-gray-900 font-bold px-4 py-2 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-zinc-900 sm:w-auto">
+        Retour à l'accueil
+    </a>
+</div>
 
-                @csrf
-
-                @method('DELETE')
-
-                <button type="submit">Supprimer</button>
-            </form>
-        </p>
-
-    @endforeach
+<div class="pt-20 sm:pt-25 md:pt-15">
+    <div class="flex justify-center items-center min-h-screen m-0 flex-col">
+        <h1 class="mt-10 text-xl">Liste des livres</h1>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5 w-full p-8">
+            @foreach ($books as $book)
+                <div class="border p-4 rounded-lg bg-slate-400 shadow-md hover:shadow-lg flex flex-col h-full">
+                    <p class="font-semibold text-lg text-black flex-grow">{{ $book->title }} de {{ $book->user->name }}</p>
+                    <div class="flex flex-wrap justify-between items-center w-full mt-auto gap-4 text-center">
+                        <a href="{{ route('books.edit', $book) }}" class="bg-gray-500 text-black font-bold px-4 py-2 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-zinc-900 w-full sm:w-auto">
+                            Editer
+                        </a>
+                        <form action="{{ route('books.destroy', $book) }}" method="POST" class="w-full sm:w-auto">
+                            @csrf
+                            @method('DELETE')
+                            <button class="bg-gray-500 text-black font-bold px-4 py-2 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-zinc-900 w-full sm:w-auto" type="submit">
+                                Supprimer
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            @endforeach
+        </div>
+    </div>
+</div>
 
 @endsection
