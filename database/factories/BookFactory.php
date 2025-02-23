@@ -17,8 +17,27 @@ class BookFactory extends Factory
      */
     public function definition(): array
     {
+        $titles = [
+            'L’Art de programmer',
+            'Laravel pour les nuls',
+            'Les Secrets du PHP',
+            'Développement Web Moderne',
+            'Code propre et efficace',
+            'Laravel, le retour',
+            'Le cas Symfony',
+            'Le mystère MVC',
+            'Martine apprend Laravel',
+            'Symfony contre-attaque'
+        ];
+
+        static $index = 0;
+
+        $title = $titles[$index];
+
+        $index = ($index + 1) % count($titles);
+
         return [
-            'title' => $this->faker->sentence,
+            'title' => $title,
             'user_id' => User::factory(),
         ];
     }

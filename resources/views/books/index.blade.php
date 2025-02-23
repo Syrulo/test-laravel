@@ -1,12 +1,6 @@
-@extends('app')
+@extends('layouts.app')
 
 @section('content')
-
-<div class="fixed top-0 left-0 w-full p-4 flex z-50 bg-gray-500">
-    <a href="{{ route('home') }}" class="bg-stone-400 text-gray-900 font-bold px-4 py-2 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-zinc-900 sm:w-auto">
-        Retour à l'accueil
-    </a>
-</div>
 
 <div class="pt-20 sm:pt-25 md:pt-15">
     <div class="flex justify-center items-center min-h-screen m-0 flex-col">
@@ -14,7 +8,10 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5 w-full p-8">
             @foreach ($books as $book)
                 <div class="border p-4 rounded-lg bg-slate-400 shadow-md hover:shadow-lg flex flex-col h-full">
-                    <p class="font-semibold text-lg text-black flex-grow">{{ $book->title }} de {{ $book->user->name }}</p>
+                    <p class="font-semibold text-lg text-black flex-grow">
+                        {{ $book->title }}<br>
+                        <span class="text-sm">: de {{ $book->user->name }}</span>
+                    </p>
                     <div class="flex flex-wrap justify-between items-center w-full mt-auto gap-4 text-center">
                         <a href="{{ route('books.edit', $book) }}" class="bg-gray-500 text-black font-bold px-4 py-2 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-zinc-900 w-full sm:w-auto">
                             Editer
