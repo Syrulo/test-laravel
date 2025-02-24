@@ -24,16 +24,16 @@
                     </p>
                     <div class="flex flex-wrap justify-evenly gap-4 w-full mt-auto pt-4">
                         <a href="{{ route('books.show', $book) }}" class="bg-gray-500 text-black font-bold px-4 py-2 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-zinc-900 flex items-center justify-center sm:w-auto">
-                            <x-heroicon-s-book-open class="h-6 w-6 text-gray-800" />
+                            <x-heroicon-s-book-open class="h-6 w-6 text-gray-800"/>
                         </a>
                         <a href="{{ route('books.edit', $book) }}" class="bg-gray-500 text-black font-bold px-4 py-2 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-zinc-900 flex items-center justify-center sm:w-auto">
-                            <x-heroicon-s-pencil-square class="h-6 w-6 text-gray-800" />
+                            <x-heroicon-s-pencil-square class="h-6 w-6 text-gray-800"/>
                         </a>
                         <form action="{{ route('books.destroy', $book) }}" method="POST" class="w-auto sm:w-auto">
                             @csrf
                             @method('DELETE')
                             <button class="bg-gray-500 text-black font-bold px-4 py-2 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-zinc-900 flex items-center justify-center sm:w-auto" type="submit">
-                                <x-heroicon-s-trash class="h-6 w-6 text-gray-800" />
+                                <x-heroicon-s-trash class="h-6 w-6 text-gray-800"/>
                             </button>
                         </form>
                     </div>
