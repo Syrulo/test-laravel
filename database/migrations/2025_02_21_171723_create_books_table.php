@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('books', function (Blueprint $table) {
             $table->id();
             $table->string('title');
+            $table->text('content');
             $table->foreignIdFor(\App\Models\User::class);
             $table->timestamps();
         });

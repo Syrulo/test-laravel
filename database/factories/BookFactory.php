@@ -39,6 +39,7 @@ class BookFactory extends Factory
         return [
             'title' => $title,
             'user_id' => User::factory(),
+            'content' => $this->faker->paragraph(10),
         ];
     }
 }

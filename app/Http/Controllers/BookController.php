@@ -16,6 +16,12 @@ class BookController extends Controller
         ]);
     }
 
+    public function show(Book $book)
+    {
+        return view('books.show', compact('book'));
+    }
+    
+
     public function create() 
     {
         return view('books.create');
@@ -23,14 +29,20 @@ class BookController extends Controller
 
     public function store(Request $request) 
     {
+        $validated = $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+        ]);
+
         $user = User::factory()->create();
 
         Book::create([
-            'title' => $request->title,
+            'title' => $validated['title'],
+            'content' => $validated['content'],
             'user_id' => $user->id,
         ]);
 
-        return redirect()->route('books.index');
+        return redirect()->route('books.index')->with('success', 'Livre créé avec succès!');
     }
 
     public function edit(Request $request, Book $book) 
@@ -53,6 +65,6 @@ class BookController extends Controller
     {
         $book->delete();
 
-        return redirect()->route('books.index');
+        return redirect()->route('books.index')->with('danger', 'Le livre a bien été supprimé');
     }
 }
