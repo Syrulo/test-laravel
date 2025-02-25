@@ -14,7 +14,7 @@
             {{ session('danger') }}
         </div> 
         @endif
-        <h1 class="text-xl">Liste des livres</h1>
+        <h1 class="text-xl text-white">Liste des livres</h1>
         <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 w-full p-8">
             @foreach ($books as $book)
                 <div class="border p-4 rounded-lg bg-slate-400 shadow-md hover:shadow-lg flex flex-col h-full">
@@ -26,6 +26,7 @@
                         <a href="{{ route('books.show', $book) }}" class="bg-gray-500 text-black font-bold px-4 py-2 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-zinc-900 flex items-center justify-center sm:w-auto">
                             <x-heroicon-s-book-open class="h-6 w-6 text-gray-800"/>
                         </a>
+                        @auth
                         <a href="{{ route('books.edit', $book) }}" class="bg-gray-500 text-black font-bold px-4 py-2 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-zinc-900 flex items-center justify-center sm:w-auto">
                             <x-heroicon-s-pencil-square class="h-6 w-6 text-gray-800"/>
                         </a>
@@ -36,6 +37,7 @@
                                 <x-heroicon-s-trash class="h-6 w-6 text-gray-800"/>
                             </button>
                         </form>
+                        @endauth
                     </div>
                 </div>
             @endforeach

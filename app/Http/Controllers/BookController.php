@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
 
 class BookController extends Controller
 {
@@ -33,15 +35,19 @@ class BookController extends Controller
             'title' => 'required|string|max:255',
             'content' => 'required|string',
         ]);
-
+    
+    if (auth::check()) {
+        $user = auth::user();
+    } else {
         $user = User::factory()->create();
+    }
 
         Book::create([
             'title' => $validated['title'],
             'content' => $validated['content'],
             'user_id' => $user->id,
         ]);
-
+    
         return redirect()->route('books.index')->with('success', 'Livre créé avec succès!');
     }
 
