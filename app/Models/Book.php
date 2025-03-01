@@ -14,11 +14,16 @@ class Book extends Model
         'title',
         'content',
         'user_id',
+        'genre_id'
     ];
 
     public function user(): BelongsTo 
     {
-        return $this-> belongsTo(User::class);
+        return $this->belongsTo(User::class);
     }
 
+    public function genre(): BelongsTo
+    {
+        return $this->belongsTo(Genre::class);
+    }
 }

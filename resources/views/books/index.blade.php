@@ -20,7 +20,14 @@
                 <div class="border p-4 rounded-lg bg-slate-400 shadow-md hover:shadow-lg flex flex-col h-full">
                     <p class="font-semibold text-lg text-center text-black flex-grow">
                         {{ $book->title }}<br>
-                        <span class="text-sm">: de {{ $book->user->name }}</span>
+                        <span class="text-sm">: de {{ $book->user->name }}</span><br>
+                        <span class="text-sm">Catégorie : 
+                            @if ($book->genre)
+                                {{ $book->genre->name }}
+                            @else
+                                Aucune catégorie
+                            @endif
+                        </span>
                     </p>
                     <div class="flex flex-wrap justify-evenly gap-4 w-full mt-auto pt-4">
                         <a href="{{ route('books.show', $book) }}" class="bg-gray-500 text-black font-bold px-4 py-2 rounded-lg hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-zinc-900 flex items-center justify-center sm:w-auto">

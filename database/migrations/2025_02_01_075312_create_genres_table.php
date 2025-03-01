@@ -11,12 +11,9 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('genres', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
-            $table->text('content');
-            $table->foreignIdFor(\App\Models\User::class); // User id
-            $table->foreignIdFor(\App\Models\Genre::class)->nullable()->constrained()->onDelete('set null'); // Genre id avec "set null" lors de la suppression
+            $table->string('name');
             $table->timestamps();
         });
     }
@@ -26,7 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('genres');
     }
 };
-
